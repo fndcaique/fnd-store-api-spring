@@ -6,9 +6,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
+
 // @Getter // cria getters para todos os atributos da classe
 // @Setter // cria setters para todos os atributos da classe
-// @Data // equivalente ao getter + setter e mais
+@Data // equivalente ao getter + setter e mais
+@Accessors(chain = true)
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 // @Table(name = "product")
 public class Product {
@@ -20,29 +28,4 @@ public class Product {
   private String name;
 
   private Integer quantity;
-
-  public Integer getId() {
-    return this.id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public Integer getQuantity() {
-    return this.quantity;
-  }
-
-  public void setQuantity(Integer quantity) {
-    this.quantity = quantity;
-  }
-
 }
