@@ -32,13 +32,22 @@ public class ProductController {
     return ResponseEntity.ok(repository.findAll());
   }
 
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<Object> findById(@PathVariable(required = true) int id) {
+    if (!repository.existsById(id)) {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(repository.findById(id));
+  }
+
   @PostMapping
   public ResponseEntity<Product> create(@RequestBody(required = true) ProductDTO productDTO) {
     return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(productDTO.build()));
   }
 
   @PatchMapping(value = "/{id}")
-  public ResponseEntity<Object> update(@PathVariable int id, @RequestBody(required = true) ProductDTO productDTO) {
+  public ResponseEntity<Object> update(@PathVariable(required = true) int id,
+      @RequestBody(required = true) ProductDTO productDTO) {
     if (!repository.existsById(id)) {
       return ResponseEntity.notFound().build();
     }
@@ -48,7 +57,7 @@ public class ProductController {
   }
 
   @DeleteMapping(value = "/{id}")
-  public ResponseEntity<Object> removeById(@PathVariable int id) {
+  public ResponseEntity<Object> removeById(@PathVariable(required = true) int id) {
     if (!repository.existsById(id)) {
       return ResponseEntity.notFound().build();
     }
@@ -61,7 +70,7 @@ public class ProductController {
   // create ✅ // without validation
   // update ✅ // without validation
   // delete ✅
-  // findById
+  // findById ✅
   // findByName
 
 }
