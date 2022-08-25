@@ -27,5 +27,6 @@ public class Product {
   @Column(length = 50, nullable = false)
   private String name;
 
+  @Column(nullable = false)
   private Integer quantity;
 }

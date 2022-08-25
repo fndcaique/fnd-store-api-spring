@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,10 +36,19 @@ public class ProductController {
     return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(productDTO.build()));
   }
 
+  @PatchMapping(value = "/{id}")
+  public ResponseEntity<Object> update(@PathVariable int id, @RequestBody(required = true) ProductDTO productDTO) {
+    if (!repository.existsById(id)) {
+      return ResponseEntity.notFound().build();
+    }
+    Product updatedProduct = productDTO.build().setId(id);
+
+    return ResponseEntity.ok(repository.save(updatedProduct));
+  }
   // todo
   // findAll ✅
-  // create ✅
-  // update
+  // create ✅ // without validation
+  // update ✅ // without validation
   // delete
   // findById
   // findByName
