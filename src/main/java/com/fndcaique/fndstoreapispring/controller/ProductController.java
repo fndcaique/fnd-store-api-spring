@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fndcaique.fndstoreapispring.dto.ProductDTO;
@@ -28,7 +29,10 @@ public class ProductController {
   private ProductRepository repository;
 
   @GetMapping
-  public ResponseEntity<List<Product>> findAll() {
+  public ResponseEntity<List<Product>> findAll(@RequestParam(value = "name", required = false) String name) {
+    if (name != null) {
+      return ResponseEntity.ok(repository.findByNameContains(name));
+    }
     return ResponseEntity.ok(repository.findAll());
   }
 
@@ -71,6 +75,5 @@ public class ProductController {
   // update ✅ // without validation
   // delete ✅
   // findById ✅
-  // findByName
-
+  // findByName ✅
 }
