@@ -1,0 +1,10 @@
+insert into product (name, quantity) values ('Product 1', 1);
+insert into product (name, quantity) values ('Product 2', 2);
+insert into product (name, quantity) values ('Product 3', 3);
+insert into product (name, quantity) values ('Product 4', 4);
+insert into product (name, quantity) values ('Product 5', 5);
+insert into product (name, quantity) values ('Product 6', 6);
+insert into product (name, quantity) values ('Product 7', 7);
+insert into product (name, quantity) values ('Product 8', 8);
+insert into product (name, quantity) values ('Product 9', 9);
+insert into product (name, quantity) values ('Product 10', 10);
